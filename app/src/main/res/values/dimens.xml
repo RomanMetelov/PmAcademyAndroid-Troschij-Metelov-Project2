@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textSizeError">36sp</dimen>
+    <dimen name="textPaddingError">20dp</dimen>
+    <dimen name="textSizeRepo">20sp</dimen>
+    <dimen name="textPaddingRepo">8dp</dimen>
+    <dimen name="widthProgressBar">200dp</dimen>
+    <dimen name="heightProgressBar">200dp</dimen>
+    <dimen name="errorTextSize">36sp</dimen>
+    <dimen name="marginAva">20dp</dimen>
+    <dimen name="imageHeight">0dp</dimen>
+    <dimen name="imagewidth">0dp</dimen>
+</resources>
