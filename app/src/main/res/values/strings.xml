@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">Test</string>
+    <string name="app_name">Troschij-Metelov-GitHub-Client</string>
+    <string name="login">login</string>
+    <string name="try_again">again</string>
+    <string name="error_update_token">error</string>
+    <string name="updating_data">updating token</string>
+    <string name="user_avatar">user_avatar</string>
+    <string name="error_not_found">not found</string>
+    <string name="error_data_loading">loading</string>
 </resources>
