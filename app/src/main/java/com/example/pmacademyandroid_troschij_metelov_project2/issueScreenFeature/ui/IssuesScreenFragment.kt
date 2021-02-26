@@ -51,24 +51,27 @@ class IssuesScreenFragment : BaseFragment(R.layout.issues_fragment) {
         app.getComponent().inject(this)
     }
 
-    private fun setupRecyclerView(){
+    private fun setupRecyclerView() {
         binding.apply {
             rvIssues.adapter = issuesAdapter
-            rvIssues.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            rvIssues.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         }
     }
 
     private fun setupLiveDataListener() {
-        viewModel.issuesLiveData.observe(viewLifecycleOwner){
-            when(it){
-                is ClientAppState.Loading -> {}
+        viewModel.issuesLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is ClientAppState.Loading -> {
+                }
                 is ClientAppState.Data -> updateIssuesRecyclerView(it.data)
-                is ClientAppState.Error -> {}
+                is ClientAppState.Error -> {
+                }
             }
         }
     }
 
-    private fun updateIssuesRecyclerView(pagingData: PagingData<IssueReposResponse>){
+    private fun updateIssuesRecyclerView(pagingData: PagingData<IssueReposResponse>) {
         viewModel.viewModelScope.launch {
             issuesAdapter.submitData(pagingData)
         }

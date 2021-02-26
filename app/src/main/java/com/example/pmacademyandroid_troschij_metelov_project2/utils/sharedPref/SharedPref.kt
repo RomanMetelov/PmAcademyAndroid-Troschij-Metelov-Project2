@@ -11,6 +11,7 @@ class SharedPref @Inject constructor(context: Context) {
     private companion object {
         const val KEY_TOKEN = "KEY_TOKEN"
     }
+
     private val sharedPreferences: SharedPreferences by lazy {
         context.getSharedPreferences("test", Context.MODE_PRIVATE)
     }

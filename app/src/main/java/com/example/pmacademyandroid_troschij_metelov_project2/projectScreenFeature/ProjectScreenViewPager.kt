@@ -6,13 +6,14 @@ import com.example.pmacademyandroid_troschij_metelov_project2.issueScreenFeature
 import com.example.pmacademyandroid_troschij_metelov_project2.projectScreenFeature.contributorsScreen.ContributorsScreenFragment
 import com.example.pmacademyandroid_troschij_metelov_project2.projectScreenFeature.readmeScreen.ReadMeScreenFragment
 
-class ProjectScreenViewPager(fragment: Fragment, private val userProject: UserProject) : FragmentStateAdapter(fragment) {
+class ProjectScreenViewPager(fragment: Fragment, private val userProject: UserProject) :
+    FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int {
         return Page.values().size
     }
 
     override fun createFragment(position: Int): Fragment {
-        return when(Page.values()[position]) {
+        return when (Page.values()[position]) {
             Page.CONTRIBUTORS -> ContributorsScreenFragment.newInstance(userProject)
             Page.README -> ReadMeScreenFragment.newInstance(userProject)
             Page.ISSUES -> IssueScreenFragment.newInstance()

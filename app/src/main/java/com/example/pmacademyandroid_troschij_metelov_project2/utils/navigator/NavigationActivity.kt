@@ -20,14 +20,14 @@ class NavigationActivity : AppCompatActivity(R.layout.navigation_activity) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.navigation_activity)
         val userName = intent.getStringExtra(GET_USER_KEY)
-        if (userName != null){
+        if (userName != null) {
             navigator.showUserScreen(UserProfile.UserPublic(userName))
-        }else{
+        } else {
             startFragment()
         }
     }
 
-    private fun startFragment(){
+    private fun startFragment() {
         getCodeFromUri(uri = intent.data)?.let {
             navigator.showUpdatingFragment(it)
             return
@@ -44,10 +44,10 @@ class NavigationActivity : AppCompatActivity(R.layout.navigation_activity) {
         return uri.getQueryParameter("code")
     }
 
-    companion object{
-        fun start(context : Context, item : String){
+    companion object {
+        fun start(context: Context, item: String) {
             val intent = Intent(context, NavigationActivity::class.java)
-            intent.putExtra(GET_USER_KEY,item)
+            intent.putExtra(GET_USER_KEY, item)
             context.startActivity(intent)
         }
     }

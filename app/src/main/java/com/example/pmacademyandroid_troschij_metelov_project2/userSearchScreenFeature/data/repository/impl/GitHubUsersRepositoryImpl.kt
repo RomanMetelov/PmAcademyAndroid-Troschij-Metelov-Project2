@@ -5,7 +5,7 @@ import com.example.pmacademyandroid_troschij_metelov_project2.userSearchScreenFe
 import com.example.pmacademyandroid_troschij_metelov_project2.userSearchScreenFeature.data.GitHubUsersResponseToModelMapper
 import com.example.pmacademyandroid_troschij_metelov_project2.userSearchScreenFeature.data.repository.GitHubUsersRepository
 
-class GitHubUsersRepositoryImpl (
+class GitHubUsersRepositoryImpl(
     private val remoteDataSource: GitHubUsersRemoteDataSource,
     private val gitHubUsersResponseToModelMapper: GitHubUsersResponseToModelMapper
 ) : GitHubUsersRepository {

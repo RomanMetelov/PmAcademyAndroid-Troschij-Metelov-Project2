@@ -18,7 +18,8 @@ class ReposAdapter(private var callback: ((ReposResponse) -> Unit) = { }) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReposViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.repo_view_holder, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.repo_view_holder, parent, false)
         return ReposViewHolder(view, callback)
     }
 }

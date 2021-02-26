@@ -6,10 +6,11 @@ import com.example.pmacademyandroid_troschij_metelov_project2.databinding.RepoVi
 import com.example.pmacademyandroid_troschij_metelov_project2.userProfileScreenFeature.ReposResponse
 
 
-class ReposViewHolder(view: View, private var callback: ((ReposResponse) -> Unit) = { }) : RecyclerView.ViewHolder(view) {
+class ReposViewHolder(view: View, private var callback: ((ReposResponse) -> Unit) = { }) :
+    RecyclerView.ViewHolder(view) {
     private lateinit var binding: RepoViewHolderBinding
 
-    fun onBind(reposResponse: ReposResponse, ){
+    fun onBind(reposResponse: ReposResponse) {
         binding = RepoViewHolderBinding.bind(itemView)
         binding.apply {
             tvReposName.setOnClickListener { callback(reposResponse) }

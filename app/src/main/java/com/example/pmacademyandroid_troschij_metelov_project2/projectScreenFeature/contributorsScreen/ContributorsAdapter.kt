@@ -16,7 +16,8 @@ class ContributorsAdapter(private var callback: ((UserResponse) -> Unit) = {}) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContributorViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.contributor_view_holder, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.contributor_view_holder, parent, false)
         return ContributorViewHolder(view, callback)
     }
 }

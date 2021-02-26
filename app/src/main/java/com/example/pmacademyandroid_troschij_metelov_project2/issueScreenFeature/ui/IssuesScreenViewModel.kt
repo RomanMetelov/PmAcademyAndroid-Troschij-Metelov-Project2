@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class IssuesScreenViewModel@Inject constructor(
+class IssuesScreenViewModel @Inject constructor(
     private val gitHubService: GitHubService
 ) : BaseViewModel() {
 
@@ -31,7 +31,6 @@ class IssuesScreenViewModel@Inject constructor(
 
     fun getIssues(userProject: UserProject) {
         baseScope.launch {
-            //_issuesLiveData.postValue(State.Loading)
             reposFlow(
                 userProject.userName,
                 userProject.repoName
@@ -41,7 +40,10 @@ class IssuesScreenViewModel@Inject constructor(
         }
     }
 
-    private suspend fun reposFlow(owner: String, repoName: String): Flow<PagingData<IssueReposResponse>> {
+    private suspend fun reposFlow(
+        owner: String,
+        repoName: String
+    ): Flow<PagingData<IssueReposResponse>> {
         return Pager(PagingConfig(PAGE_SIZE)) {
             PagingDataSource(baseScope) { currentPage ->
                 gitHubService.getIssues(owner, repoName, PAGE_SIZE, currentPage)

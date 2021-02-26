@@ -13,13 +13,13 @@ import javax.inject.Singleton
 @Singleton
 @Component(dependencies = [], modules = [AppModule::class])
 interface AppComponent {
-    val context : Context
+    val context: Context
 
 
     fun inject(fragment: UserProfileScreenFragment)
     fun inject(fragment: UpdatingScreenFragment)
     fun inject(fragment: ReadMeScreenFragment)
-    fun inject(fragment : ContributorsScreenFragment)
-    fun inject(fragment : IssueScreenFragment)
-    fun inject(fragment : IssuesScreenFragment)
+    fun inject(fragment: ContributorsScreenFragment)
+    fun inject(fragment: IssueScreenFragment)
+    fun inject(fragment: IssuesScreenFragment)
 }

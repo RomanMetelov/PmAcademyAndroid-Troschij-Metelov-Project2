@@ -10,12 +10,14 @@ import com.example.pmacademyandroid_troschij_metelov_project2.ClientApp
 import com.example.pmacademyandroid_troschij_metelov_project2.Constants.Companion.USER_KEY
 import com.example.pmacademyandroid_troschij_metelov_project2.R
 import com.example.pmacademyandroid_troschij_metelov_project2.databinding.ContributorsScreenBinding
+import com.example.pmacademyandroid_troschij_metelov_project2.projectScreenFeature.Page
 import com.example.pmacademyandroid_troschij_metelov_project2.userProfileScreenFeature.UserResponse
 import com.example.pmacademyandroid_troschij_metelov_project2.utils.ClientAppState
 import com.example.pmacademyandroid_troschij_metelov_project2.userProfileScreenFeature.UserProfile
 import com.example.pmacademyandroid_troschij_metelov_project2.utils.navigator.BaseFragment
 import com.example.pmacademyandroid_troschij_metelov_project2.projectScreenFeature.ProjectScreenViewModel
 import com.example.pmacademyandroid_troschij_metelov_project2.projectScreenFeature.UserProject
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -73,7 +75,10 @@ class ContributorsScreenFragment(private val userProject: UserProject) :
     private fun setupLiveDataListeners() {
         viewModel.contributorsLiveData.observe(viewLifecycleOwner) {
             when (it) {
+                is ClientAppState.Loading -> {
+                }
                 is ClientAppState.Data -> updateContributors(it.data)
+                is ClientAppState.Error -> TODO()
             }
         }
     }
@@ -83,5 +88,6 @@ class ContributorsScreenFragment(private val userProject: UserProject) :
             contributorsAdapter.submitData(pagingData)
         }
     }
+
 
 }

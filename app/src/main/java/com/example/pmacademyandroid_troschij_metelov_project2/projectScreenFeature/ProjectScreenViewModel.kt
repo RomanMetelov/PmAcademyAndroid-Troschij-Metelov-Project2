@@ -26,13 +26,15 @@ class ProjectScreenViewModel @Inject constructor(
     private val _readMeLiveData = MutableLiveData<ClientAppState<String, Int>>()
     val readMeLiveData: LiveData<ClientAppState<String, Int>> = _readMeLiveData
 
-    private val _contributorsLiveData = MutableLiveData<ClientAppState<PagingData<UserResponse>, String>>()
+    private val _contributorsLiveData =
+        MutableLiveData<ClientAppState<PagingData<UserResponse>, String>>()
     val contributorsLiveData: LiveData<ClientAppState<PagingData<UserResponse>, String>> =
         _contributorsLiveData
 
     private val _issuesLiveData =
         MutableLiveData<ClientAppState<PagingData<IssueReposResponse>, Exception>>()
-    val issuesLiveData: LiveData<ClientAppState<PagingData<IssueReposResponse>, Exception>> = _issuesLiveData
+    val issuesLiveData: LiveData<ClientAppState<PagingData<IssueReposResponse>, Exception>> =
+        _issuesLiveData
 
     val scopeProjectScreen = baseScope
 

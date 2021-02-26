@@ -10,7 +10,8 @@ import com.bumptech.glide.Glide
 import com.example.pmacademyandroid_troschij_metelov_project2.databinding.SearchItemBinding
 import com.example.pmacademyandroid_troschij_metelov_project2.userSearchScreenFeature.ui.GitHubUsersUIModel
 
-class GitHubUsersAdapter(private val callback: (GitHubUsersUIModel) -> Unit) : ListAdapter<GitHubUsersUIModel, SearchViewHolder>(DIFF_CALLBACK) {
+class GitHubUsersAdapter(private val callback: (GitHubUsersUIModel) -> Unit) :
+    ListAdapter<GitHubUsersUIModel, SearchViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = SearchItemBinding.inflate(layoutInflater, parent, false)
@@ -24,16 +25,25 @@ class GitHubUsersAdapter(private val callback: (GitHubUsersUIModel) -> Unit) : L
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<GitHubUsersUIModel>() {
-            override fun areItemsTheSame(oldItem: GitHubUsersUIModel, newItem: GitHubUsersUIModel): Boolean =
+            override fun areItemsTheSame(
+                oldItem: GitHubUsersUIModel,
+                newItem: GitHubUsersUIModel
+            ): Boolean =
                 oldItem == newItem
 
-            override fun areContentsTheSame(oldItem: GitHubUsersUIModel, newItem: GitHubUsersUIModel): Boolean =
+            override fun areContentsTheSame(
+                oldItem: GitHubUsersUIModel,
+                newItem: GitHubUsersUIModel
+            ): Boolean =
                 oldItem == newItem
         }
     }
 }
 
-class SearchViewHolder(private val binding: SearchItemBinding,var callback : ((GitHubUsersUIModel) -> Unit) = {}) :
+class SearchViewHolder(
+    private val binding: SearchItemBinding,
+    var callback: ((GitHubUsersUIModel) -> Unit) = {}
+) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(gitHubUser: GitHubUsersUIModel) {
         binding.tvGitHubUsername.text = gitHubUser.login

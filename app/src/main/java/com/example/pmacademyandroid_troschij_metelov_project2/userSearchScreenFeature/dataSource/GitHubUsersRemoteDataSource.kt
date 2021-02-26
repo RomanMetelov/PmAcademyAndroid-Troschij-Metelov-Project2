@@ -3,6 +3,6 @@ package com.example.pmacademyandroid_troschij_metelov_project2.userSearchScreenF
 import retrofit2.Retrofit
 
 class GitHubUsersRemoteDataSource(private val retrofit: Retrofit) {
-    suspend fun getGitHubUsers(usernameQuery: String) = //эта функция делает запрос на сервак (и ожидает получить массив а получает объект?)
+    suspend fun getGitHubUsers(usernameQuery: String) =
         retrofit.create(GitHubUsersApi::class.java).getUsersByQuery(usernameQuery, 999).items
 }

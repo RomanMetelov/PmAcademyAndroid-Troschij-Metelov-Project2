@@ -3,7 +3,7 @@ package com.example.pmacademyandroid_troschij_metelov_project2.issueScreenFeatur
 import com.example.pmacademyandroid_troschij_metelov_project2.userProfileScreenFeature.UserResponse
 import com.google.gson.annotations.SerializedName
 
-data class IssueDetailsResponse (
+data class IssueDetailsResponse(
     @SerializedName("number") val number: Int,
     @SerializedName("user") val user: UserResponse,
     @SerializedName("title") val title: String,

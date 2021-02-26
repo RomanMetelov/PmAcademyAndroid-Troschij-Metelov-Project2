@@ -41,7 +41,10 @@ class AppModule(private val context: Context) {
 
     @Provides
     @Singleton
-    fun provideRetrofit(gsonConverterFactory: GsonConverterFactory, sharedPref: SharedPref): Retrofit {
+    fun provideRetrofit(
+        gsonConverterFactory: GsonConverterFactory,
+        sharedPref: SharedPref
+    ): Retrofit {
         return Retrofit.Builder().client(
             OkHttpClient().newBuilder()
                 .addInterceptor(ErrorInterceptor())

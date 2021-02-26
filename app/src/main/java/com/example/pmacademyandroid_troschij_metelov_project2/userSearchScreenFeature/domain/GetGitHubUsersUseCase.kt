@@ -3,7 +3,7 @@ package com.example.pmacademyandroid_troschij_metelov_project2.userSearchScreenF
 import com.example.pmacademyandroid_troschij_metelov_project2.userSearchScreenFeature.ui.GitHubUsersUIModel
 import com.example.pmacademyandroid_troschij_metelov_project2.userSearchScreenFeature.data.repository.GitHubUsersRepository
 
-class GetGitHubUsersUseCase (
+class GetGitHubUsersUseCase(
     private val gitHubUsersRepository: GitHubUsersRepository,
     private val gitHubUsersModelToUIMapper: GitHubUsersModelToUIMapper
 ) {

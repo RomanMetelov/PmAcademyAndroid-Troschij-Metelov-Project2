@@ -13,7 +13,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 class ProjectFragment : BaseFragment(R.layout.project_screen) {
 
     private lateinit var binding: ProjectScreenBinding
-    private lateinit var viewPager : ProjectScreenViewPager
+    private lateinit var viewPager: ProjectScreenViewPager
     private lateinit var userProject: UserProject
 
     companion object {
@@ -46,12 +46,12 @@ class ProjectFragment : BaseFragment(R.layout.project_screen) {
         }
     }
 
-    private fun setupAdapter(){
-        viewPager = ProjectScreenViewPager(this,userProject)
+    private fun setupAdapter() {
+        viewPager = ProjectScreenViewPager(this, userProject)
         binding.viewPager.adapter = viewPager
     }
 
-    private fun setupTabLayout(){
+    private fun setupTabLayout() {
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = Page.values()[position].toString()
         }.attach()

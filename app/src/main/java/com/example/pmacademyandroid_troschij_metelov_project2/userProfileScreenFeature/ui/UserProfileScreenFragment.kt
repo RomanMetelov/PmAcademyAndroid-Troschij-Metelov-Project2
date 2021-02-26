@@ -35,7 +35,6 @@ class UserProfileScreenFragment(private val userProfile: UserProfile) :
         navigation.showProjectScreen(UserProject(binding.userGroup.getName(), it.name))
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

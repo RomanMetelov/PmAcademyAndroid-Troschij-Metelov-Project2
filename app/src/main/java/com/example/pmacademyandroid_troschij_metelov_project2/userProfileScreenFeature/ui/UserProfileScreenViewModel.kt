@@ -46,10 +46,12 @@ class UserProfileScreenViewModel @Inject constructor(
             }
         }
     }
+
     fun getUser() {
         viewModelScope.launch(exceptionsHandler) {
             launch {
-                _userInfoLiveData.value = ClientAppState.Data(profileRepository.getUser(userProfile))
+                _userInfoLiveData.value =
+                    ClientAppState.Data(profileRepository.getUser(userProfile))
             }
         }
     }

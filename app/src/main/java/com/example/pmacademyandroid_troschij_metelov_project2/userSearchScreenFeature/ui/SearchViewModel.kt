@@ -28,7 +28,7 @@ sealed class SearchResult {
     object TerminalError : SearchResult()
 }
 
-class SearchViewModel : ViewModel(){
+class SearchViewModel : ViewModel() {
     companion object {
         const val SEARCH_DELAY_MS = 500L
         const val MIN_QUERY_LENGTH = 3

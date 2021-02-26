@@ -17,7 +17,7 @@ import com.example.pmacademyandroid_troschij_metelov_project2.databinding.LoginS
 
 class LoginScreenFragment : Fragment() {
 
-    private lateinit var binding : LoginScreenFragmentBinding
+    private lateinit var binding: LoginScreenFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
