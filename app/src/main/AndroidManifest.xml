@@ -28,15 +28,7 @@
                     android:host="callback" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".usersSearchFeature.ui.UsersSearchActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <!--<category android:name="android.intent.category.LAUNCHER" /> -->
-            </intent-filter>
-        </activity>
-
+        <activity android:name=".searchScreen.UsersSearchActivity"/>
     </application>
 
 </manifest>

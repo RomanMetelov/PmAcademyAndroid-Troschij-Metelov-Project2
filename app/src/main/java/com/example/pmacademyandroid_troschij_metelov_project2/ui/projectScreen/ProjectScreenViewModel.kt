@@ -1,71 +1,68 @@
 package com.example.pmacademyandroid_troschij_metelov_project2.ui.projectScreen
 
-import androidx.annotation.StringRes
+import android.util.Base64
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.pmacademyandroid_troschij_metelov_project2.R
-import com.example.pmacademyandroid_troschij_metelov_project2.datasource.api.Exceptions
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.example.pmacademyandroid_troschij_metelov_project2.datasource.api.GitHubService
 import com.example.pmacademyandroid_troschij_metelov_project2.datasource.model.IssueReposResponse
 import com.example.pmacademyandroid_troschij_metelov_project2.datasource.model.UserResponse
 import com.example.pmacademyandroid_troschij_metelov_project2.repository.UserProfileRepository
-import com.example.pmacademyandroid_troschij_metelov_project2.tools.State
-import kotlinx.coroutines.CoroutineExceptionHandler
+import com.example.pmacademyandroid_troschij_metelov_project2.tools.BaseViewModel
+import com.example.pmacademyandroid_troschij_metelov_project2.tools.PagingDataSource
+import com.example.pmacademyandroid_troschij_metelov_project2.tools.ClientAppState
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ProjectScreenViewModel @Inject constructor(
-    private val profileRepository : UserProfileRepository,
+    private val profileRepository: UserProfileRepository,
+    private val gitHubService: GitHubService
+) : BaseViewModel() {
+    private val _readMeLiveData = MutableLiveData<ClientAppState<String, Int>>()
+    val readMeLiveData: LiveData<ClientAppState<String, Int>> = _readMeLiveData
 
-) : ViewModel(){
+    private val _contributorsLiveData = MutableLiveData<ClientAppState<PagingData<UserResponse>, String>>()
+    val contributorsLiveData: LiveData<ClientAppState<PagingData<UserResponse>, String>> =
+        _contributorsLiveData
 
-    private val _readMeLiveData = MutableLiveData<State<String, Int>>()
-    val readMeLiveData: LiveData<State<String, Int>> = _readMeLiveData
+    private val _issuesLiveData =
+        MutableLiveData<ClientAppState<PagingData<IssueReposResponse>, Exception>>()
+    val issuesLiveData: LiveData<ClientAppState<PagingData<IssueReposResponse>, Exception>> = _issuesLiveData
 
-    private val _contributorsLiveData = MutableLiveData<State<List<UserResponse>,Int>>()
-    val contributorsLiveData : LiveData<State<List<UserResponse>,Int>> = _contributorsLiveData
+    val scopeProjectScreen = baseScope
 
-    private val _issuesLiveData = MutableLiveData<State<List<IssueReposResponse>,Int>>()
-    val issuesLiveData : LiveData<State<List<IssueReposResponse>,Int>> = _issuesLiveData
-
-    init{
-        _readMeLiveData.value = State.Loading
-        _contributorsLiveData.value = State.Loading
-        _issuesLiveData.value = State.Loading
-    }
-
-    private val exceptionHolder = CoroutineExceptionHandler { _, throwable ->
-        when (throwable) {
-            is Exceptions.NotFound ->
-                setErrorToLiveData(R.string.error_not_found)
-            is Exceptions.DataLoading ->
-                setErrorToLiveData(R.string.error_data_loading)
-        }
-    }
-
-
-    private fun setErrorToLiveData(@StringRes textError: Int) {
-        if (_readMeLiveData.value is State.Loading) {
-            _readMeLiveData.value = State.Error(R.string.error_not_found)
-            _issuesLiveData.value = State.Error(R.string.error_not_found)
-            _contributorsLiveData.value = State.Error(R.string.error_not_found)
-        } else {
-            _readMeLiveData.value =
-                State.Error(textError)
-        }
-    }
-
-    fun getContent(repo : String, owner : String){
-        viewModelScope.launch(exceptionHolder){
-            launch{
-                _readMeLiveData.value = State.Data(profileRepository.getReadme(repo, owner))
-                _contributorsLiveData.value = State.Data(profileRepository.getContributorsForProjectDetail(repo,owner))
-                _issuesLiveData.value = State.Data(profileRepository.getIssuesForProjectDetail(repo,owner))
+    fun getContributors(repoName: String, owner: String) {
+        baseScope.launch {
+            _contributorsLiveData.postValue(ClientAppState.Loading)
+            reposFlow(
+                repoName,
+                owner
+            ).collectLatest { pagedData ->
+                _contributorsLiveData.postValue(ClientAppState.Data(pagedData))
             }
         }
     }
 
+    private suspend fun reposFlow(owner: String, repoName: String): Flow<PagingData<UserResponse>> {
+        return Pager(PagingConfig(40)) {
+            PagingDataSource(baseScope) { currentPage ->
+                gitHubService.getContributors(40, currentPage, repoName, owner)
+            }
+        }.flow.cachedIn(baseScope)
+    }
 
+    fun getReadMe(owner: String, repoName: String) {
+        baseScope.launch {
+            _readMeLiveData.postValue(ClientAppState.Loading)
+            val text = profileRepository.getReadme(repoName, owner).readMe
+            val t = Base64.decode(text, 0).decodeToString()
+            _readMeLiveData.postValue(ClientAppState.Data(t))
+        }
+    }
 
 }

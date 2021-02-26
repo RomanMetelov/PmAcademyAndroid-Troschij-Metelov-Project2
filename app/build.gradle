@@ -49,6 +49,7 @@ android {
 
 
 dependencies {
+    def activity_version = "1.2.0"
 
     //paging library
     implementation "androidx.paging:paging-runtime-ktx:3.0.0-beta01"
@@ -73,12 +74,15 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    implementation "androidx.activity:activity-ktx:$activity_version"
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation "androidx.recyclerview:recyclerview:1.1.0"
 
-    testImplementation 'junit:junit:4.13.2'
+
+    testImplementation 'junit:junit:4.+'
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
