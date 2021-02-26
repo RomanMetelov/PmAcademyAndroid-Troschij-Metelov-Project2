@@ -8,12 +8,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
 abstract class BaseViewModel : ViewModel() {
-    protected val exceptionHandler = CoroutineExceptionHandler{
+    protected val exceptionsHandler = CoroutineExceptionHandler{
         _, throwable ->
         when(throwable){
-            is Exceptions.NotFound -> Log.d("TAG" ,"NotFound")
+            is Exceptions.NotFound -> Log.d("NOT_FOUND_TAG" ,"NotFound")
+            is Exceptions.Unauthorized -> Log.d("UNAUTHORIZED", "Unauthorized")
+            is Exceptions.DataLoading -> Log.d("DATALOADING", "DataLoading")
         }
     }
 
-    protected val baseViewModelScope = CoroutineScope(SupervisorJob() + exceptionHandler)
+    protected val baseScope = CoroutineScope(SupervisorJob() + exceptionsHandler)
 }

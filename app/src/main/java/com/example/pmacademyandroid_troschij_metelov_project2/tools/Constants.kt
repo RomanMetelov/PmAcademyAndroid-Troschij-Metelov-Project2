@@ -9,10 +9,12 @@ class Constants {
         const val schema = "https"
         const val host = "api.github.com"
         const val hostAuth = "github.com"
-        const val MAIN_DEBUG_TAG = "MAIN_DEBUG_TAG"
         const val UNAUTHORIZED_MESSAGE = "User in not authorized!"
         const val NOT_FOUND_MESSAGE = "Resource not found!"
         const val DATA_LOADING_MESSAGE = "Something went wrong!"
+        const val USER_KEY = "USER_KEY"
+        const val PAGE_SIZE = 20
+        const val GET_USER_KEY = "GET_USER_KEY"
     }
 
 }

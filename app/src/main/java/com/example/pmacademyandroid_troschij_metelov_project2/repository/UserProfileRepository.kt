@@ -1,8 +1,10 @@
 package com.example.pmacademyandroid_troschij_metelov_project2.repository
 
+import android.util.Log
 import com.example.pmacademyandroid_troschij_metelov_project2.datasource.api.GitHubService
 import com.example.pmacademyandroid_troschij_metelov_project2.datasource.model.*
 import com.example.pmacademyandroid_troschij_metelov_project2.tools.UserProfile
+import retrofit2.Call
 import javax.inject.Inject
 
 class UserProfileRepository @Inject constructor(
@@ -23,12 +25,12 @@ class UserProfileRepository @Inject constructor(
         }
     }
 
-    suspend fun getContributorsForProjectDetail(repo: String, owner: String): List<UserResponse> {
-        return gitHubService.getContributors(30, 0, repo, owner)
+    suspend fun getContributors(repo: String, owner: String, per_page : Int, page : Int): List<UserResponse> {
+        return gitHubService.getContributors(per_page, page, repo, owner)
     }
 
     suspend fun getIssuesForProjectDetail(repo: String, owner: String): List<IssueReposResponse> {
-        return gitHubService.getIssues(30, 0, repo, owner)
+        return gitHubService.getIssues(repo, owner,30,0)
     }
 
     suspend fun getIssueDetails(repo : String, owner : String, issueNumber : Int): IssueDetailsResponse{
@@ -39,7 +41,7 @@ class UserProfileRepository @Inject constructor(
         return gitHubService.getIssueComments(30,0,repo,owner,issueNumber)
     }
 
-    suspend fun getReadme(repo : String, owner : String) : String {
+    suspend fun getReadme(repo : String, owner : String) : ReadMeResponse {
         return gitHubService.getReadme(owner, repo)
     }
 

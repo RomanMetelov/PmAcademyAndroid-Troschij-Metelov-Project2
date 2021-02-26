@@ -28,6 +28,7 @@
                     android:host="callback" />
             </intent-filter>
         </activity>
+        <activity android:name=".searchScreen.UsersSearchActivity"/>
     </application>
 
 </manifest>

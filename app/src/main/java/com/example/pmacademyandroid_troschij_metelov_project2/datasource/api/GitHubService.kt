@@ -1,6 +1,7 @@
 package com.example.pmacademyandroid_troschij_metelov_project2.datasource.api
 
 import com.example.pmacademyandroid_troschij_metelov_project2.datasource.model.*
+import retrofit2.Call
 import retrofit2.http.*
 
 interface GitHubService {
@@ -49,12 +50,13 @@ interface GitHubService {
         @Path("owner") owner: String
     ): List<UserResponse>
 
+    @Headers("Accept: application/vnd.github.squirrel-girl-preview")
     @GET("/repos/{owner}/{repo}/issues")
     suspend fun getIssues(
-        @Query("per_page") per_page: Int,
-        @Query("page") page: Int,
         @Path("repo") repo: String,
-        @Path("owner") owner: String
+        @Path("owner") owner: String,
+        @Query("per_page") per_page: Int,
+        @Query("page") page: Int
     ): List<IssueReposResponse>
 
     @GET("/repos/{owner}/{repo}/issues/{issue_number}")
@@ -73,9 +75,9 @@ interface GitHubService {
         @Path("issue_number") issue_number: Int
     ): List<IssueCommentsResponse>
 
-    @GET(" https://raw.githubusercontent.com/{owner}/{repo}/master/README.md")
+    @GET("/repos/{owner}/{repo}/readme")
     suspend fun getReadme(
         @Path("owner") owner: String,
         @Path("repo") repo: String,
-    ): String
+    ): ReadMeResponse
 }
