@@ -10,8 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Test">
-        <activity android:name="com.example.pmacademyandroid_troschij_metelov_project2.navigationActivity.NavigationActivity">
+        android:theme="@style/Theme.Test" >
+        <activity android:name=".navigationActivity.NavigationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
