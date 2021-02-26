@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.example.pmacademyandroid_troschij_metelov_project2.UserGroup
+    <com.example.pmacademyandroid_troschij_metelov_project2.userProfileScreenFeature.UserGroup
         android:id="@+id/ugUser"
         android:padding="12dp"
         android:layout_width="match_parent"
