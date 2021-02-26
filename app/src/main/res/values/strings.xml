@@ -12,4 +12,5 @@
     <string name="not_enough_characters">Query must be at least 3 characters long</string>
     <string name="search_error">Error when searching!</string>
     <string name="search">search</string>
+    <string name="search_text">Search</string>
 </resources>
